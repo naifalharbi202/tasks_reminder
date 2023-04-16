@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "891391482281",
+    "project_id": "tasks-4378e",
+    "storage_bucket": "tasks-4378e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891391482281:android:daab84d79fc49b2892ccb8",
+        "android_client_info": {
+          "package_name": "com.example.my_reminder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891391482281-5123nvi3jsegdpkt7defa6ki81v1gbjm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoOrn-WZGtA9PIEaWN4of2s07DTNHg5AQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891391482281-5123nvi3jsegdpkt7defa6ki81v1gbjm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
