@@ -16,9 +16,8 @@ Widget defaultButton({
 }) =>
     Container(
       width: width,
-      height: 45.0,
       padding: const EdgeInsets.symmetric(
-        horizontal: 5.0,
+        horizontal: 2.0,
       ),
       decoration: BoxDecoration(
           color: color, borderRadius: BorderRadius.circular(radius)),
@@ -27,7 +26,7 @@ Widget defaultButton({
           child: Text(
             text!.toUpperCase(),
             style: const TextStyle(
-              fontSize: 20.0,
+              fontSize: 18.0,
               color: Color.fromARGB(255, 249, 247, 247),
             ),
           )),

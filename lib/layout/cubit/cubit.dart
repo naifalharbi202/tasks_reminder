@@ -260,6 +260,12 @@ class AppCubit extends Cubit<AppStates> {
     emit(CheckDatePassedState());
   }
 
+  void changeRepeateCheck(value) {
+    isRepeated = value;
+    print(value);
+    emit(ChangeRepeateCheckState());
+  }
+
   void changeCategoryCheck(value) {
     isCategorySelected = value;
 

@@ -39,23 +39,6 @@ class HomeLayout extends StatelessWidget {
               cubit.titles[cubit.currentIndex],
               style: const TextStyle(color: Colors.white, fontSize: 20.0),
             ),
-            actions: [
-              IconButton(
-                  onPressed: () {
-                    isCategoryClicked = false;
-                    cubit.signOut(context, LoginScreen());
-                  },
-                  icon: const Icon(
-                    Icons.exit_to_app_sharp,
-                    color: Color.fromARGB(255, 13, 85, 143),
-                  )),
-
-              // IconButton(
-              //     onPressed: () {
-              //       toastMessage(message: uId.toString());
-              //     },
-              //     icon: Icon(Icons.text_snippet))
-            ],
           ),
           bottomNavigationBar: BottomNavigationBar(
               currentIndex: cubit.currentIndex,

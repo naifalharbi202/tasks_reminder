@@ -10,6 +10,8 @@ class ChangeCheckState extends AppStates {}
 
 class ChangeCategoryState extends AppStates {}
 
+class ChangeRepeateCheckState extends AppStates {}
+
 class AddPostSuccessState extends AppStates {}
 
 class AddPostErrorState extends AppStates {

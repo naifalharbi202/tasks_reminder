@@ -17,6 +17,7 @@ class AddTaskScreen extends StatelessWidget {
   var dateController = TextEditingController();
   var timeController = TextEditingController();
   var formKey = GlobalKey<FormState>();
+  var formKeyRepeate = GlobalKey<FormState>();
   DateTime? myDate;
   DateTime? pickedDate;
   String hint = 'اختر تصنيف';
@@ -196,6 +197,61 @@ class AddTaskScreen extends StatelessWidget {
                                       }
                                       return null;
                                     }),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) => Center(
+                                            child: Card(
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            15.0),
+                                                    child: Row(
+                                                      children: [
+                                                        const Text('الأحد'),
+                                                        Spacer(),
+                                                        Checkbox(
+                                                            value: isRepeated,
+                                                            onChanged: (value) {
+                                                              return cubit
+                                                                  .changeRepeateCheck(
+                                                                      value);
+                                                            })
+                                                      ],
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ));
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      color: Colors.grey[100],
+                                      boxShadow: const [BoxShadow()]),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 15.0, vertical: 8.0),
+                                    child: Row(
+                                      children: const [
+                                        // Checkbox(
+                                        //     value: isRepeated,
+                                        //     onChanged: (value) {
+                                        //       cubit.changeRepeateCheck(value);
+                                        //     }),
+                                        Text('تكرار'),
+                                        Spacer(),
+                                        Icon(Icons.arrow_forward_ios)
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               ),
                               Row(
                                 children: [
