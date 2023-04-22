@@ -25,6 +25,7 @@ List<TaskModel> selectedTasks = [];
 bool isCategoryClicked = false;
 bool isDatePassed = false;
 bool isCategorySelected = false;
+bool isRepeated = false;
 
 List<dynamic>? defaultCategories = [
   'تذكيرات العمل',

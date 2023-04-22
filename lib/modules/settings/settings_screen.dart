@@ -5,8 +5,10 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_reminder/layout/cubit/cubit.dart';
 import 'package:my_reminder/layout/cubit/states.dart';
+import 'package:my_reminder/modules/login/login_screen.dart';
 
 import '../../shared/components/components.dart';
+import '../../shared/components/constants.dart';
 
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({super.key});
@@ -24,6 +26,7 @@ class SettingsScreen extends StatelessWidget {
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
+        AppCubit cubit = AppCubit.get(context);
         return Padding(
           padding: const EdgeInsets.all(15.0),
           child: Center(
@@ -59,38 +62,55 @@ class SettingsScreen extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  ConditionalBuilder(
-                    condition: state is! UpdateUserLoadingState,
-                    builder: (context) => defaultButton(
-                        text: 'تحديث',
-                        onPressFunction: () {
-                          if (formKey.currentState!.validate()) {
-                            if (nameController.text ==
-                                    AppCubit.get(context)
-                                        .userModel!
-                                        .name
-                                        .toString() &&
-                                phoneController.text ==
-                                    AppCubit.get(context)
-                                        .userModel!
-                                        .phone
-                                        .toString() &&
-                                emailController.text ==
-                                    AppCubit.get(context)
-                                        .userModel!
-                                        .email
-                                        .toString()) {
-                              toastMessage(message: 'لا يوجد أي تحديث');
-                            } else {
-                              AppCubit.get(context).updateUser(
-                                name: nameController.text,
-                                phone: phoneController.text,
-                              );
-                            }
-                          }
-                        }),
-                    fallback: (context) =>
-                        const Center(child: CircularProgressIndicator()),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ConditionalBuilder(
+                          condition: state is! UpdateUserLoadingState,
+                          builder: (context) => defaultButton(
+                              text: 'تحديث',
+                              onPressFunction: () {
+                                if (formKey.currentState!.validate()) {
+                                  if (nameController.text ==
+                                          AppCubit.get(context)
+                                              .userModel!
+                                              .name
+                                              .toString() &&
+                                      phoneController.text ==
+                                          AppCubit.get(context)
+                                              .userModel!
+                                              .phone
+                                              .toString() &&
+                                      emailController.text ==
+                                          AppCubit.get(context)
+                                              .userModel!
+                                              .email
+                                              .toString()) {
+                                    toastMessage(message: 'لا يوجد أي تحديث');
+                                  } else {
+                                    AppCubit.get(context).updateUser(
+                                      name: nameController.text,
+                                      phone: phoneController.text,
+                                    );
+                                  }
+                                }
+                              }),
+                          fallback: (context) =>
+                              const Center(child: CircularProgressIndicator()),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 50.0,
+                      ),
+                      Expanded(
+                        child: defaultButton(
+                            text: 'تسجيل خروج',
+                            onPressFunction: () {
+                              isCategoryClicked = false;
+                              cubit.signOut(context, LoginScreen());
+                            }),
+                      )
+                    ],
                   )
                 ]),
               ),
