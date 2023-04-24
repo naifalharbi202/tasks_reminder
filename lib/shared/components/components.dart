@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_reminder/layout/cubit/cubit.dart';
+import 'package:my_reminder/modules/dialoge/multi_select.dart';
 import 'package:my_reminder/modules/update_task/update_task_screen.dart';
 import 'package:my_reminder/shared/components/constants.dart';
 import 'package:share_plus/share_plus.dart';
@@ -350,6 +351,34 @@ Widget buildTaskItem(TaskModel model, context) => Padding(
       ),
     );
 
-        // List of colors for cards
+// List of colors for cards
 
+// Dialog function
+void funRepeate(context) async {
+  List<String> weekDays = [
+    'كل سبت',
+    'كل أحد',
+    'كل اثنين',
+    'كل ثلاثاء',
+    'كل اربعاء',
+    'كل خميس',
+    'كل جمعة',
+  ];
 
+  // This function will  be called on click. So on-click we will show a dialog
+  final List<String>? results = await showDialog(
+      context: context,
+      builder: (context) {
+        // Here we will return a list of items and checkboxes but since show dialog
+        // isn't stateful we need to create a statefull class and pass a list of strings
+        // in the constructor
+
+        return MultiSelect(items: weekDays);
+      });
+
+  //Update UI
+  if (results != null) {
+    // set state
+    AppCubit.get(context).fillSelectedDays(results);
+  }
+}

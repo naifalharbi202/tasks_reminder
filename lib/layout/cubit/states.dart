@@ -12,6 +12,12 @@ class ChangeCategoryState extends AppStates {}
 
 class ChangeRepeateCheckState extends AppStates {}
 
+class FillSelectedDaysSuccessState extends AppStates {}
+
+class AddSelectedDaysSuccessState extends AppStates {}
+
+class RemoveSelectedDaysSuccessState extends AppStates {}
+
 class AddPostSuccessState extends AppStates {}
 
 class AddPostErrorState extends AppStates {
