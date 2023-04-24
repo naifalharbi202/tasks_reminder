@@ -354,4 +354,21 @@ class AppCubit extends Cubit<AppStates> {
       emit(UpdateUserErrorState());
     });
   }
+
+  List<String> selectedItems = [];
+
+  void fillSelectedDays(List<String> value) {
+    selectedItems = value;
+    emit(FillSelectedDaysSuccessState());
+  }
+
+  void addToSelectedDays(String day) {
+    selectedItems.add(day);
+    emit(AddSelectedDaysSuccessState());
+  }
+
+  void removeFromSelectedDays(String day) {
+    selectedItems.remove(day);
+    emit(RemoveSelectedDaysSuccessState());
+  }
 }
