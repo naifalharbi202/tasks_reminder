@@ -1,5 +1,6 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:my_reminder/layout/cubit/cubit.dart';
+import 'package:my_reminder/shared/components/constants.dart';
 
 class MultiSelect extends StatefulWidget {
   final List<String> items; // when we call this class we will pass a list
@@ -18,10 +19,10 @@ class _MultiSelectState extends State<MultiSelect> {
     setState(() {
       if (isSelected) {
         AppCubit.get(context).selectedItems.add(itemValue);
-        print('itemValue added is $itemValue');
+        // print('itemValue added is $itemValue');
       } else {
         AppCubit.get(context).selectedItems.remove(itemValue);
-        print('itemValue removed is $itemValue');
+        // print('itemValue removed is $itemValue');
       }
     });
   }
@@ -32,22 +33,70 @@ class _MultiSelectState extends State<MultiSelect> {
   }
 
   // This method is called when submit button is clicked
-  void submitRepeate() {
-    print(AppCubit.get(context).selectedItems);
-  }
+  void submitRepeate() {}
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-        content: SingleChildScrollView(
-            child: ListBody(
-      children: widget.items
-          .map((item) => CheckboxListTile(
-              value: AppCubit.get(context).selectedItems.contains(item),
-              title: Text(item),
-              controlAffinity: ListTileControlAffinity.leading,
-              onChanged: (isChecked) => itemChange(item, isChecked!)))
-          .toList(),
-    )));
+    return Column(
+      children: [
+        AlertDialog(
+          title: Text('تكرار'),
+          content: SingleChildScrollView(
+              child: ListBody(
+            children: widget.items
+                .map((item) => CheckboxListTile(
+                    value: AppCubit.get(context).selectedItems.contains(item),
+                    title: Text(item),
+                    controlAffinity: ListTileControlAffinity.platform,
+                    onChanged: (isChecked) => itemChange(item, isChecked!)))
+                .toList(),
+          )),
+          actions: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                    onPressed: () {
+                      dayNumbers = [];
+                      isRepeated = true;
+                      for (int i = 0;
+                          i < AppCubit.get(context).selectedItems.length;
+                          i++) {
+                        if (AppCubit.get(context).selectedItems[i] ==
+                            'كل سبت') {
+                          dayNumbers.add(6);
+                        } else if (AppCubit.get(context).selectedItems[i] ==
+                            'كل أحد') {
+                          dayNumbers.add(7);
+                        } else if (AppCubit.get(context).selectedItems[i] ==
+                            'كل اثنين') {
+                          dayNumbers.add(1);
+                        } else if (AppCubit.get(context).selectedItems[i] ==
+                            'كل ثلاثاء') {
+                          dayNumbers.add(2);
+                        } else if (AppCubit.get(context).selectedItems[i] ==
+                            'كل اربعاء') {
+                          dayNumbers.add(3);
+                        } else if (AppCubit.get(context).selectedItems[i] ==
+                            'كل خميس') {
+                          dayNumbers.add(4);
+                        } else {
+                          dayNumbers.add(5);
+                        }
+                      }
+                      print('dayNumbers ============= $dayNumbers');
+                    },
+                    child: const Text('تأكيد')),
+                TextButton(
+                    onPressed: () {
+                      cancelRepeate();
+                    },
+                    child: const Text('إلغاء')),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
   }
 }

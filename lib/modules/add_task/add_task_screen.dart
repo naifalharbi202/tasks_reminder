@@ -201,36 +201,6 @@ class AddTaskScreen extends StatelessWidget {
                               InkWell(
                                 onTap: () {
                                   funRepeate(context);
-
-                                  // showDialog(
-                                  //     context: context,
-                                  //     builder: (context) => Center(
-                                  //           child: Card(
-                                  //             child: Column(
-                                  //               mainAxisSize: MainAxisSize.min,
-                                  //               children: [
-                                  //                 Padding(
-                                  //                   padding:
-                                  //                       const EdgeInsets.all(
-                                  //                           15.0),
-                                  //                   child: Row(
-                                  //                     children: [
-                                  //                       const Text('الأحد'),
-                                  //                       Spacer(),
-                                  //                       Checkbox(
-                                  //                           value: isRepeated,
-                                  //                           onChanged: (value) {
-                                  //                             return cubit
-                                  //                                 .changeRepeateCheck(
-                                  //                                     value);
-                                  //                           })
-                                  //                     ],
-                                  //                   ),
-                                  //                 )
-                                  //               ],
-                                  //             ),
-                                  //           ),
-                                  //         ));
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(

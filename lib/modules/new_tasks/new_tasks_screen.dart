@@ -35,8 +35,6 @@ class NewTasksScreen extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        if (state is GetTaskLoadingState ||
-            state is GetAllCategoriesLoadingState) return MainLoadingScreen();
         AppCubit cubit = AppCubit.get(context);
         return RefreshIndicator(
           onRefresh: () => cubit.getTask(),

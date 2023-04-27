@@ -26,6 +26,7 @@ bool isCategoryClicked = false;
 bool isDatePassed = false;
 bool isCategorySelected = false;
 bool isRepeated = false;
+List<int> dayNumbers = [];
 
 List<dynamic>? defaultCategories = [
   'تذكيرات العمل',

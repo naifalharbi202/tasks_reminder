@@ -1,4 +1,5 @@
 ﻿import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:my_reminder/shared/components/constants.dart';
 
 class NotificationHelper {
   // Add single notification
@@ -17,6 +18,33 @@ class NotificationHelper {
         schedule: NotificationCalendar.fromDate(date: dateTime));
   }
 
+  // repeate notification
+
+  static repeateNotification({
+    required int id,
+    required String title,
+    required String body,
+    required int day,
+    required DateTime dateTime,
+  }) {
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+          id: id,
+          channelKey: 'main_channel',
+          title: title,
+          body: body,
+        ),
+        schedule: NotificationCalendar(
+          repeats: true,
+          allowWhileIdle: true,
+          year: dateTime.year,
+          month: dateTime.month,
+          hour: dateTime.hour,
+          minute: dateTime.minute,
+          weekday: day,
+        ));
+  }
+
 // delete one notification
   static deleteNotification({required int id}) async {
     await AwesomeNotifications().cancel(id);
@@ -25,6 +53,11 @@ class NotificationHelper {
 // delete all notifications / pending
   static deleteAllNotifications() {
     AwesomeNotifications().cancelAll();
+  }
+
+  //
+  static cancelScheduled() {
+    AwesomeNotifications().cancelAllSchedules();
   }
 
 //   //Notification Service

@@ -91,12 +91,34 @@ class AppCubit extends Cubit<AppStates> {
         .doc(lastId.toString());
 
     ref.set(taskModel!.toJson()).then((value) {
-      NotificationHelper.triggerNotification(
-          id: lastId++,
-          title: title,
-          body: 'New notification',
-          dateTime: lastUpdate);
+      // Repeated notification //
 
+      if (isRepeated) {
+        NotificationHelper.cancelScheduled();
+        for (int i = 0; i < dayNumbers.length; i++) {
+          NotificationHelper.repeateNotification(
+            id: lastId++,
+            title: title,
+            body: 'Repeated Notification',
+            day: i,
+            dateTime: lastUpdate,
+          );
+          print('day number ============= $i');
+        }
+
+        isRepeated = false;
+        print('I am in is repeated');
+      }
+      // Not repeated notification //
+      else {
+        NotificationHelper.triggerNotification(
+            id: lastId++,
+            title: title,
+            body: 'New notification',
+            dateTime: lastUpdate);
+        print('I am not repeated');
+      }
+      print('---------------------$isRepeated');
       CacheHelper.saveData(key: 'lastId', value: lastId).then((value) {
         emit(AddPostSuccessState());
       });
